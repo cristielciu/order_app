@@ -1,0 +1,29 @@
+%script{language:'javascript',type:'text/javascript'}setTimeout("location.reload();",20000);
+.page.px-4.mt-4
+  .mt-4.mb-4.d-flex.justify-content-center
+    =link_to 'Pending', orders_path(status: 'Pending'), class: (params['status']== 'Pending')? 'btn btn-info text-white ml-2' : 'btn btn-primary text-white ml-2'
+    =link_to 'Delivered', orders_path(status: 'Delivered'), class: (params['status']== 'Delivered')? 'btn btn-info text-white ml-2' : 'btn btn-primary text-white ml-2'
+    =link_to 'All', orders_path(status: ''), class: (params['status'].blank? ? 'btn btn-info text-white ml-2' : 'btn btn-primary text-white ml-2')
+  %table{class: "table table-striped mt-2"}
+    %thead
+      %tr
+        %th First Name
+        %th Last Name
+        %th Phone Number
+        %th Products
+        %th Status
+        %th Details
+        %th
+
+    %tbody
+      - @orders.each do |order|
+        %tr
+          %td=order.first_name
+          %td=order.last_name
+          %td=order.phone_number
+          %td=order.products
+          %td=order.status
+          %td=order.details
+          %td=link_to 'Edit', edit_order_path(order)
+
+  =link_to 'New Order', new_order_path,{class:'btn btn-primary mt-4'}

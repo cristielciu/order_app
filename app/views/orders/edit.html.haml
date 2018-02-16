@@ -1,0 +1,57 @@
+.px-5.mt-4
+  %h3 Edit Order
+  =form_for @order do |f|
+    .form-group.row
+      .col-sm-12
+        .form-group.row
+          = f.label 'First Name',{class: ['col-sm-2 col-form-label mt-2',  ('text-danger' if @errors && @errors[:first_name].present?)]}
+          = f.text_field :first_name,{class: 'col-sm-4 mt-2' }
+          -if @errors && @errors[:first_name].present?
+            .col-sm-6.text-danger.mt-3
+              %span{calss: 'text-danger'}=@errors[:first_name].join(",")
+
+      .col-sm-12
+        .form-group.row
+          = f.label 'Last Name',{class: ['col-sm-2 col-form-label mt-2',  ('text-danger' if @errors && @errors[:last_name].present?)]}
+          = f.text_field :last_name,{class: 'col-sm-4 mt-2'}
+          -if @errors && @errors[:last_name].present?
+            .col-sm-6.text-danger.mt-3
+              %span{calss: 'text-danger'}=@errors[:last_name].join(",")
+
+      .col-sm-12
+        .form-group.row
+          = f.label 'Phone Number',{class: ['col-sm-2 col-form-label mt-2',  ('text-danger' if @errors && @errors[:phone_number].present?)]}
+          = f.text_field :phone_number,{class: 'col-sm-4 mt-2'}
+          -if @errors && @errors[:phone_number].present?
+            .col-sm-6.text-danger.mt-3
+              %span{calss: 'text-danger'}=@errors[:phone_number].join(",")
+
+      .col-sm-12
+        .form-group.row
+          = f.label 'Products',{class: ['col-sm-2 col-form-label mt-2',  ('text-danger' if @errors && @errors[:products].present?)]}
+          = f.text_field :products,{class: 'col-sm-4 mt-2'}
+          -if @errors && @errors[:products].present?
+            .col-sm-6.text-danger.mt-3
+              %span{calss: 'text-danger'}=@errors[:products].join(",")
+
+      .col-sm-12
+        .form-group.row
+          = f.label 'Details',{class: 'col-sm-2 col-form-label mt-2'}
+          = f.text_field :details,{class: 'col-sm-4 mt-2'}
+
+      .col-sm-12
+        .form-group.row
+          = f.label 'Status',{class: ['col-sm-2 col-form-label mt-2',  ('text-danger' if @errors && @errors[:status].present?)]}
+          .col-sm-3.mt-3
+            %span Delivered
+            = f.radio_button(:status , 'Delivered')
+          .col-sm-1.mt-3
+            %span Pending
+            = f.radio_button(:status , 'Pending')
+          -if @errors && @errors[:status].present?
+            .col-sm-3.text-danger.mt-3
+              %span{calss: 'text-danger'}=@errors[:status].join(",")
+
+      .col-sm-12.mt-4
+        %input{:type => "submit", :value => 'Edit', class: 'btn btn-primary'}
+        =link_to 'Back', orders_path, class: 'btn btn-secondary'
